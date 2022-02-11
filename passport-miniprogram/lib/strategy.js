@@ -54,7 +54,7 @@ WechatStrategy.prototype.authenticate = function (req, options) {
 
   // 获取code,并校验相关参数的合法性
   // No code only state --> User has rejected send details. (Fail authentication request).
-  if (req.query && req.query.state && (!req.query.code || !req.query.encryptData || !req.query.iv)) {
+  if (req.query && req.query.state && (!req.query.code || !req.query.encryptedData || !req.query.iv)) {
     console.log('no code')
     return self.fail(401);
   }
@@ -66,17 +66,17 @@ WechatStrategy.prototype.authenticate = function (req, options) {
   }
 
   // 获取code授权成功
-  if (req.query && req.query.code && req.query.encryptData && req.query.iv) {
+  if (req.query && req.query.code && req.query.encryptedData && req.query.iv) {
 
     var code = req.query.code;
-    var encryptData = req.query.encryptData;
+    var encryptedData = req.query.encryptedData;
     var iv = req.query.iv;
 
-    console.log(code, encryptData, iv)
+    console.log(code, encryptedData, iv)
 
     self._oauth.getUserByCode({
       code,
-      encryptData,
+      encryptedData,
       iv
     }, function (err, response) {
       // 校验完成信息
