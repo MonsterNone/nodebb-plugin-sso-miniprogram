@@ -19,14 +19,8 @@
                     let params = (new URL(document.location)).searchParams;
                     let redirect = params.get('redirect')
                     let state = params.get('state')
-                    wx.miniProgram.navigateTo({
-                        url: '/pages/webview/login',
-                        success: function (res) {
-                            res.eventChannel.emit('options', {
-                                redirect,
-                                state
-                            })
-                        }
+                    wx.miniProgram.redirectTo({
+                        url: '/pages/webview/login?state=' + state + '&redirect=' + redirect
                     })
                 } else {
                     noti_ele.innerHTML = '请在小程序内打开'
