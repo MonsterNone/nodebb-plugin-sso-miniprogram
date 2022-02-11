@@ -2,7 +2,7 @@
 
 var util = require('util');
 var passport = require('passport-strategy');
-var OAuth = require('wechat-oauth');
+var OAuth = require('../wechat-oauth');
 var debug = require('debug')('passport-wechat');
 
 function WechatStrategy(options, verify) {
