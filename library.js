@@ -27,8 +27,8 @@ Wechat.getStrategy = function(strategies, callback) {
         appID: settings.id,
         appSecret: settings.secret,
         callbackURL: nconf.get('url') + '/auth/miniprogram/callback'
-      }, function(profile, sessionKey, done) {
-				console.log("get wechat profile: ", profile, sessionKey);
+      }, function(profile, done) {
+				console.log("get wechat profile: ", profile);
         Wechat.login(profile.openid, profile.unionid, profile.nickName, profile.avatarUrl, function(err, user) {
           if (err) {
             return done(err);
@@ -84,6 +84,7 @@ Wechat.addMenuItem = function(custom_header, callback) {
 };
 
 Wechat.login = function(wxid, uninoid, nickname, avatarurl, callback) {
+  console.log(wxid, uninoid, nickname, avatarurl)
   Wechat.getUidByWechatId(wxid, function(err, uid) {
     if (err) {
       return callback(err);
@@ -104,7 +105,7 @@ Wechat.login = function(wxid, uninoid, nickname, avatarurl, callback) {
 				async.waterfall([
 					async.apply(user.getUserFields, uid, 'picture'),
 					function(info, next) {
-						if (!info.picture && pictureUrl) {
+						if (!info.picture && avatarurl) {
 							user.setUserField(uid, 'uploadedpicture', avatarurl);
 							user.setUserField(uid, 'picture', avatarurl);
 						}
@@ -147,7 +148,7 @@ Wechat.deleteUserData = function(uid, callback) {
     }
   ], function(err) {
     if (err) {
-      winston.error('[sso-wechat] Could not remove OAuthId data for uid ' + uid + '. Error: ' + err);
+      console.error('[sso-wechat] Could not remove OAuthId data for uid ' + uid + '. Error: ' + err);
       return callback(err);
     }
     callback(null, uid);
