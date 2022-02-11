@@ -1,0 +1,18 @@
+{
+	"id": "nodebb-plugin-sso-miniprogram",
+	"name": "NodeBB Wechat SSO miniprogram",
+	"description": "NodeBB 小程序登录插件",
+	"url": "https://github.com/monsternone/nodebb-plugin-sso-miniprogram",
+	"main": "./library.js",
+	"hooks": [
+		{ "hook": "static:app.load", "method": "init" },
+		{ "hook": "filter:auth.init", "method": "getStrategy" },
+		{ "hook": "filter:user.delete", "method": "deleteUserData" },
+		{ "hook": "filter:auth.list", "method": "getAssociation" },
+		{ "hook": "filter:admin.header.build", "method": "addMenuItem" }
+	],
+	"templates": "./templates",
+	"acpScripts": [
+		"public/admin.js"
+	]
+}

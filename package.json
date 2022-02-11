@@ -1,0 +1,38 @@
+{
+  "name": "nodebb-plugin-sso-miniprogram",
+  "version": "1.0.0",
+  "description": "NodeBB 小程序登录插件",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monsternone/nodebb-plugin-sso-miniprogram"
+  },
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "wechat",
+    "sso",
+    "oauth",
+    "registration",
+    "miniprogram"
+  ],
+  "author": {
+    "name": "Monster None",
+    "url": "https://github.com/monsternone"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/monsternone/nodebb-plugin-sso-miniprogram/issues"
+  },
+  "readme": "",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "debug": "latest",
+    "passport": "^0.5.2",
+    "passport-strategy": "^1.0.0",
+    "wechat-oauth": "^1.5.0"
+  },
+  "nbbpm": {
+    "compatibility": "^0.6.0 || ^1.0.0"
+  }
+}
