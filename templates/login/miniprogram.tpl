@@ -20,7 +20,7 @@
                     let redirect = params.get('redirect')
                     let state = params.get('state')
                     wx.miniProgram.redirectTo({
-                        url: '/pages/webview/login?state=' + state + '&redirect=' + redirect
+                        url: '/pages/webview/login/login?state=' + state + '&redirect=' + redirect
                     })
                 } else {
                     noti_ele.innerHTML = '请在小程序内打开'
